@@ -31,7 +31,7 @@ SCRIPT_NAME="Nextcloud Install Script"
 SCRIPT_EXPLAINER="This script is installing all requirements that are needed for Nextcloud to run.
 It's the first of two parts that are necessary to finish your customized Nextcloud installation."
 # shellcheck source=lib.sh
-source <(curl -sL https://raw.githubusercontent.com/nextcloud/vm/master/lib.sh)
+source <(curl -sL https://raw.githubusercontent.com/andyhubbert941/vm/master/lib.sh)
 
 # Check for flags
 if [ "$1" = "" ]
@@ -141,17 +141,6 @@ run_script ADDONS locales
 download_script STATIC adduser
 bash $SCRIPTS/adduser.sh "nextcloud_install_production.sh"
 rm -f $SCRIPTS/adduser.sh
-
-# Check distribution and version
-if ! version 20.04 "$DISTRO" 20.04.6
-then
-    msg_box "This script can only be run on Ubuntu 20.04 (server)."
-    exit 1
-fi
-# Use this when Ubuntu 18.04 is deprecated from the function:
-#check_distro_version
-check_universe
-check_multiverse
 
 # Check if key is available
 if ! site_200 "$NCREPO"
