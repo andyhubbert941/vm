@@ -988,37 +988,7 @@ remove_from_trusted_domains() {
 
 check_distro_version() {
 # Check Ubuntu version
-if lsb_release -sc | grep -ic "bionic" &> /dev/null || lsb_release -sc | grep -ic "focal" &> /dev/null
-then
-    OS=1
-elif lsb_release -i | grep -ic "Ubuntu" &> /dev/null
-then
-    OS=1
-elif uname -a | grep -ic "bionic" &> /dev/null || uname -a | grep -ic "focal" &> /dev/null
-then
-    OS=1
-elif uname -v | grep -ic "Ubuntu" &> /dev/null
-then
-    OS=1
 fi
-
-if [ "$OS" != 1 ]
-then
-    msg_box "Ubuntu Server is required to run this script.
-Please install that distro and try again.
-
-You can find the download link here: https://www.ubuntu.com/download/server"
-    exit 1
-fi
-
-if ! version 18.04 "$DISTRO" 20.04.10; then
-    msg_box "Your current Ubuntu version is $DISTRO but must be between 18.04 - 20.04.10 to run this script."
-    msg_box "Please contact us to get support for upgrading your server:
-https://www.hanssonit.se/#contact
-https://shop.hanssonit.se/"
-    exit 1
-fi
-}
 
 # Check if program is installed (stop_if_installed apache2)
 stop_if_installed() {
