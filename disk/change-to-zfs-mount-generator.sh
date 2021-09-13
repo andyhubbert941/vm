@@ -19,7 +19,6 @@ source /var/scripts/fetch_lib.sh || source <(curl -sL https://raw.githubusercont
 root_check
 
 # Needs to be Ubuntu 20.04 and Multiverse
-check_distro_version
 check_multiverse
 
 # Import if missing and export again to import it with UUID
